@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If this research toolkit helps your work on the puzzle, please cite it."
+title: "Echo's Quest For Wisdom — Bitcoin Steganography Puzzle: reproducible research toolkit"
+type: software
+authors:
+  - name: cinclancr
+repository-code: "https://github.com/cinclancr/Echos-Quest-For-Wisdom-Puzzle"
+abstract: >-
+  Read-only, reproducible investigation of the publicly announced Bitcoin
+  steganography puzzle "Echo's Quest For Wisdom": source integrity,
+  tokenisation, positional tables, extraction-hypothesis registry, BIP39 /
+  BIP32 / Electrum derivation checks, and checksum-agnostic permutation
+  scanners.
+keywords:
+  - bitcoin
+  - steganography
+  - bip39
+  - cryptanalysis
+  - word-puzzle
+  - python
+  - reproducible-research
+license: MIT
