@@ -366,7 +366,6 @@ collect
 color
 column
 combine
-lecture
 come
 comfort
 comic
