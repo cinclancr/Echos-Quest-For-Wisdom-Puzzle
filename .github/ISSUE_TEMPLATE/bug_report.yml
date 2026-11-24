@@ -1,0 +1,21 @@
+name: Bug report
+description: Something in the toolkit or documentation is wrong
+labels: ["bug"]
+body:
+  - type: textarea
+    attributes:
+      label: What happened?
+      description: A clear description of the incorrect behaviour or content.
+      placeholder: "The tokenizer count differs from ..."
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: How to reproduce
+      description: Commands, environment, expected vs actual output.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Evidence / sources
+      description: Links, hashes, or outputs that support the report.

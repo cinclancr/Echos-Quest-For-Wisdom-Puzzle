@@ -1,0 +1,27 @@
+name: New extraction hypothesis
+description: Propose a story-grounded rule for selecting/ordering the hidden words
+labels: ["hypothesis"]
+body:
+  - type: textarea
+    attributes:
+      label: The rule (pre-registered, before any evaluation)
+      description: |
+        State the extraction rule precisely: tokenisation convention, word
+        selection rule, ordering rule, and the expected 12 words (word 1 is
+        pinned to "echo").
+      placeholder: |
+        Rule: take the first BIP39 word after each of the 11 Echo markers...
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Story evidence for the rule
+      description: Which sentences/positions in the story motivate it?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Falsification plan
+      description: What exact derivation coverage would reject the hypothesis?
+    validations:
+      required: true

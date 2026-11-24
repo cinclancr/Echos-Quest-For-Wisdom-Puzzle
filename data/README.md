@@ -26,7 +26,7 @@ A short original text (not the copyrighted puzzle story) with planted
 structure: title + 3 paragraphs, several `echo`/`grace`/`shade` markers and
 the three dream words.  Used by the test suite so CI never needs the real
 story.  SHA-256:
-`a90833bcffd70afca2a25dc586091ab41727808b28f5dcea5cf233763b7233c6`.
+`a90833bcffd70afca2a25dc586091ab41727808b28f5dcea5cf233763763b7233c6`.
 
 ## `source_provenance.json`, `expected_counts.json`
 
