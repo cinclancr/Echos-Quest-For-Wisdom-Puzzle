@@ -24,8 +24,8 @@ twelve words form a checksum-valid BIP39 mnemonic.
 
 A short story of ~500 words was published in the video description. Twelve
 Bitcoin seed words are hidden in it. The first word is `echo`; the remaining
-eleven words are "within the story text". Arranged correctly, they unlock
-the wallet for the address above. The story, video and X post belong to their
+eleven words are "within the story text". Arranged correctly, they unlock the
+wallet for the address above. The story, video and X post belong to their
 author; this repository does **not** redistribute them (see
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)).
 
@@ -66,8 +66,8 @@ run (see `selftest`).
 │   ├── cli.py                # `echoquest` / `python -m echoquest` CLI
 │   ├── sources.py            # byte-exact provenance verification
 │   ├── tokenizers.py         # pluggable tokenisation rules
-│   ├── positions.py          # 1-based positional tables, 16x32 grids
-│   ├── wordlists.py          # pinned BIP39 wordlist (hash-checked)
+│   ├── positions.py         # 1-based positional tables, 16x32 grids
+│   ├── wordlists.py         # pinned BIP39 wordlist (hash-checked)
 │   ├── bip39.py              # checksum, entropy, seed (PBKDF2)
 │   ├── wallet.py             # read-only BIP32/BIP44 derivation, addresses
 │   ├── electrum.py           # Electrum new/old seed algorithms
