@@ -24,8 +24,8 @@ twelve words form a checksum-valid BIP39 mnemonic.
 
 A short story of ~500 words was published in the video description. Twelve
 Bitcoin seed words are hidden in it. The first word is `echo`; the remaining
-eleven words are "within the story text". Arranged correctly, they unlock the
-wallet for the address above. The story, video and X post belong to their
+eleven words are "within the story text". Arranged correctly, they unlock
+the wallet for the address above. The story, video and X post belong to their
 author; this repository does **not** redistribute them (see
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)).
 
