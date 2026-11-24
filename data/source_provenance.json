@@ -1,0 +1,34 @@
+{
+  "puzzle": {
+    "name": "Echo's Quest For Wisdom",
+    "author_channel_id": "UCjYHcWGAjUVqU49D2JOKD3w",
+    "video_url": "https://www.youtube.com/watch?v=k5WIlZcXJHI",
+    "video_title": "A Bitcoin Puzzle - Echo's Quest For Wisdom",
+    "video_duration_seconds": 305,
+    "x_post_url": "https://x.com/IMineBlocks_com/status/1894292681397829677",
+    "target_address": "1GABd5r3dYTYqSoRcErghjZTbV6zJXZJBx",
+    "announced_hint": "The first word is echo, the next 11 words can be found within the story text."
+  },
+  "author_quote_user_relayed": {
+    "text": "I leaked my #Bitcoin seed phrase in plain text and after one year the wallet is still safe. How?",
+    "provenance": "user-supplied quote; not independently re-verified against the original post"
+  },
+  "story_copy": {
+    "sha256": "437cb737531ee38ddce9aa7a4dd5dc4f68dd849d1aea54198735cda53a9a5db0",
+    "encoding": "UTF-8, LF newlines",
+    "acquisition": "author's video description (see data/README.md)",
+    "redistribution": "not redistributed in this repository"
+  },
+  "wordlist_bip39_english": {
+    "sha256": "2f5eed53a4727b4bf8880d8f3f199efc90e58503646d9ff8eff3a2ed3b24dbda",
+    "source_url": "https://raw.githubusercontent.com/bitcoin/bips/master/bip-0039/english.txt"
+  },
+  "electrum_old_wordlist": {
+    "source_url": "https://raw.githubusercontent.com/spesmilo/electrum/master/electrum/old_wordlist",
+    "size": 1626
+  },
+  "test_vectors": {
+    "bip39": "https://raw.githubusercontent.com/trezor/python-mnemonic/master/vectors.json (retrieved 2026-11-23; english section)",
+    "bip32": "https://raw.githubusercontent.com/bitcoin/bips/master/bip-0032.mediawiki (test vector 1, retrieved 2026-11-23)"
+  }
+}
