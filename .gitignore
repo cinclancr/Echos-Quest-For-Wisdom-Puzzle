@@ -1,0 +1,23 @@
+# local story copy (copyright: do not publish)
+private/
+# python
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+# experiment scratch
+*.match
+*.tmp
+# never commit a live key or solution
+private/verified_solution.json
+results/scan/dset.valid
+scripts/experiments/nochecksum_scan
+scripts/experiments/perm_scan
+scripts/experiments/verify_valid
+scripts/experiments/enumerate_valid
+*.o
+logs/
