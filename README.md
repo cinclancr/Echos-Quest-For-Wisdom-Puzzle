@@ -11,6 +11,16 @@ investigation, and tooling to continue the search — including a **checksum-agn
 full-permutation scanner** (C + OpenSSL) that does *not* assume the hidden
 twelve words form a checksum-valid BIP39 mnemonic.
 
+**Independent audit (2026-11-25):** the repository was audited end-to-end
+and made reproducible from a clean clone (the `scripts/` and `results/`
+trees and CI workflow are committed; see
+[docs/REPO_AUDIT_2026-11-25.md](docs/REPO_AUDIT_2026-11-25.md)). The C
+scanner is differentially cross-validated against the Python stack on
+**18,000 hash160 values** with a synthetic positive control proving the
+match path, and the extraction-rule space H1–H5 was audited with
+null models — see
+[docs/EXTRACTION_PRIORITY.md](docs/EXTRACTION_PRIORITY.md).
+
 | | |
 |---|---|
 | Puzzle author | IMineBlocks (YouTube channel ID `UCjYHcWGAjUVqU49D2JOKD3w`) |
@@ -122,8 +132,18 @@ python -m echoquest verify --candidate-file private/candidates.txt \
        --target 1GABd5r3dYTYqSoRcErghjZTbV6zJXZJBx --paths standard \
        --output results/verification-redacted.json
 
-# 7. run the test suite
+# 7. run the test suite + lint
 pytest -q
+ruff check .
+
+# 8. C-vs-Python differential cross-validation with positive control
+python scripts/experiments/cross_validate.py --vectors 1000
+
+# 9. H1-H5 extraction-rule audit (needs the story)
+python scripts/experiments/h1_h5_extraction_audit.py
+
+# 10. consolidated coverage summary (results/summary.json)
+python scripts/summarize_results.py
 ```
 
 The full no-checksum permutation scanner (requires OpenSSL ≥ 3.0 and a C
@@ -155,6 +175,11 @@ plus derivation parameters — never as raw key material.
   apostrophe-preserving tokenisation. The midpoint row (tokens 257–288)
   contains twelve distinct BIP39 words including `echo` and all three
   explicit dream words (`maze`, `fury`, `renew`).
+* **Audit caveat:** 50 of the 481 possible 32-token windows carry ≥ 12
+distinct BIP39 words (this row ranks 48th), and the anchor-alignment null
+gives p = 0.1305 — the row's *statistical* specialness is falsified; only
+its content (the dream trio) keeps it top-ranked. Full rationale:
+`docs/EXTRACTION_PRIORITY.md`.
 * Earlier checksum-gated scanning covered 1,391,882 of the 2,492,947
   checksum-valid permutations of the midpoint set at `m/44'/0'/0'/0/0`
   (no match).
@@ -166,8 +191,8 @@ plus derivation parameters — never as raw key material.
 * A full no-checksum permutation scan of the midpoint-32 set and
   Electrum-tag-filtered scans of the top three candidate sets are the
   experiments currently in progress; exact, dated coverage for every run
-  is recorded in [docs/RESULTS.md](docs/RESULTS.md) and
-  `results/scan/`.
+  is recorded in [docs/RESULTS.md](docs/RESULTS.md),
+  `results/scan/` and consolidated in `results/summary.json`.
 
 The story itself, its byte-exact hash and the full extraction catalogue
 are documented in [docs/](docs/) — start with
