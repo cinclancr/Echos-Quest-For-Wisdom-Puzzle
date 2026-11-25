@@ -1,0 +1,52 @@
+{
+  "c_source_sha256": "92604e2ef52974a0c9b97f1c84bf43b44547c64ced779669acb95843e3714016",
+  "checksum_flag_mismatches": 0,
+  "expected_rows": 9000,
+  "generated_utc": "2026-11-25T02:46:49Z",
+  "mismatches": 0,
+  "negative_control": {
+    "covered_permutations_in_block0": 4096,
+    "note": "disjoint word set; no match file written",
+    "ok": true
+  },
+  "paths_checked": [
+    "m/44'/0'/0'/0/0",
+    "m/0'/0/0",
+    "m/0/0",
+    "m/0/1",
+    "m/0/2",
+    "m/0/3",
+    "m/0/4",
+    "m/1/0",
+    "m/1/1"
+  ],
+  "positive_control": {
+    "compressed": true,
+    "kdf": "bip39",
+    "match_path": "m/44'/0'/0'/0/0",
+    "match_word_indices": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3
+    ],
+    "ok": true,
+    "vector": "Trezor vector 0 (synthetic target = its own m/44'/0'/0'/0/0 compressed hash160)"
+  },
+  "rows_checked": 9000,
+  "vector_kinds": {
+    "checksum-invalid (shuffled)": 499,
+    "checksum-valid (Trezor vector 0)": 1,
+    "checksum-valid (entropy-derived)": 498,
+    "story natural order (checksum-invalid)": 2
+  },
+  "vectors": 1000
+}
