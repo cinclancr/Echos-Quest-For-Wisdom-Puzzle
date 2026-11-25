@@ -44,3 +44,10 @@ carrier of the hidden words.  The unresolved part is the ORDER rule
 negative, the next families are: same set with passphrase/non-standard
 path; paragraph-5 variants; and combinations with the 33-bit selector
 story-numbers.
+
+**2026-11-25 audit adjustment:** the midpoint row's statistical
+distinctness is now falsified (50 of 481 32-token windows carry ≥ 12
+distinct BIP39 words; this row ranks 48th; anchor-alignment null
+p = 0.1305 — see `docs/EXTRACTION_PRIORITY.md`). What survives is only the
+row's *content coincidence* (all three dream words) and the running wallet
+scan — the scan, not statistics, now decides this hypothesis.
