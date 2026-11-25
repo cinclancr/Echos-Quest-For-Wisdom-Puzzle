@@ -1,0 +1,11 @@
+{
+  "valid_file": "results/scan/dset.valid",
+  "offset": 1391882,
+  "next_offset": 1533194,
+  "processed": 141312,
+  "total_records": 2492947,
+  "paths": "m/44'/0'/0'/0/0",
+  "matches": 0,
+  "elapsed_s": 544.9,
+  "completed": false
+}

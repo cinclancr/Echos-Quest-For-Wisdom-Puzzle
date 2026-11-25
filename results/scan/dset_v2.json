@@ -1,0 +1,11 @@
+{
+  "valid_file": "/home/z/my-project/Echos-Quest-For-Wisdom-Puzzle/results/scan/dset.valid",
+  "offset": 1246474,
+  "next_offset": 1391882,
+  "processed": 145408,
+  "total_records": 2492947,
+  "paths": "m/44'/0'/0'/0/0",
+  "matches": 0,
+  "elapsed_s": 543.9,
+  "completed": false
+}

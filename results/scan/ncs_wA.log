@@ -1,0 +1,2 @@
+nohup: failed to run command './scripts/experiments/nochecksum_scan': Permission denied
+worker block 0: offset=581776 checksum_valid=20762 electrum_valid=0 derived=331776 matches=0
