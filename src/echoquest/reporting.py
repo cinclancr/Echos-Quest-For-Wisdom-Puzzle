@@ -20,7 +20,10 @@ def write_extraction_csv(results: list[ExtractionResult], out_path: str | Path) 
     out.parent.mkdir(parents=True, exist_ok=True)
     fieldnames = ["method", "description", "word_count", "words", "positions", "prefixes_used", "notes"]
     with out.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        # lineterminator="\n": keep generated CSVs byte-identical to the
+        # published LF form so artifact sha256 pins verify against the repo
+        # (csv's default "\r\n" would produce a different hash per platform).
+        writer = csv.DictWriter(f, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         for r in results:
             writer.writerow(r.as_row)

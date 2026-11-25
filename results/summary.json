@@ -1,10 +1,10 @@
 {
   "artifact_sha256": {
-    "results/extractions.csv": "5674c2a7fb581c222f9f2d734f68cca3942a714eed7ee50a1567b4157763d1ca",
+    "results/extractions.csv": "9e0ba50b8df65ae5065a332332b89e036eaac4797c54e0d76d1c7ff7ab2bbd0",
     "results/scan/brainwallet_natural.json": "5f89d6bbe78617e8269f7584e14024866390ecd62cf3c39db38aff70a0f30f8d",
     "results/scan/cross_validation.json": "5b766370ab0b532186c0ce6d1269dd60ca020b4d3be2849be63a7b7819997258",
     "results/scan/h1_h5_audit.json": "a4c25060bdeb06594d32738d7e019c25c2e1cd6ee54a16f3c00862cd2e9d20de",
-    "results/scan/h3_window_census.csv": "98f8be4e0f0f8de6f05d3a56ecf416e948d0344a3e80342dc3cb82911082dd09",
+    "results/scan/h3_window_census.csv": "61695bc06d8d30907b354aa42f5530a414bc0aa9ff4fb43c39ee12a0136d5b3",
     "results/scan/nochecksum_natural.json": "6be9f9a8f7a994e138b2a62222d7b38d0f3840f75ebe2539fafc61bbb7005d0b"
   },
   "c_scanner_checkpoints": {
@@ -462,7 +462,7 @@
     "rows_checked": 9000,
     "vectors": 1000
   },
-  "generated_utc": "2026-11-25T06:01:44Z",
+  "generated_utc": "2026-11-25T06:52:36Z",
   "h1_h5_audit": {
     "h1_complete_candidates": [],
     "h1_rules_recovering_dream_trio": 8,
