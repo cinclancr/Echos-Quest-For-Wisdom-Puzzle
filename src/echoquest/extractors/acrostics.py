@@ -16,7 +16,7 @@ def _words_by_word_number(tokens: TokenizedText, n: int) -> list[str]:
     """The n-th word of each 'unit' (title + 32 narrative sentences).
 
     dCode-style acrostic lines are typically sentences; with the title this
-gives 33 units.
+    gives 33 units.
     """
     units: list[list[str]] = [[t.text for t in tokens.tokens if t.paragraph == 0]]
     for s in range(1, len(tokens.sentences) + 1):
