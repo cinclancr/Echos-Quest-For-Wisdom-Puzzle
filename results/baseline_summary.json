@@ -1,0 +1,41 @@
+{
+  "story_sha256": "437cb737531ee38ddce9aa7a4dd5dc4f68dd849d1aea54198735cda53a9a5db0",
+  "story_sha256_matches_pin": true,
+  "target_address": "1GABd5r3dYTYqSoRcErghjZTbV6zJXZJBx",
+  "dcode": {
+    "tokens": 512,
+    "paragraphs": 11,
+    "sentences": 32,
+    "echo": [1, 74, 154, 173, 226, 257, 300, 342, 376, 412, 444],
+    "grace": [22, 23, 88, 125, 150, 182, 228, 379, 404, 482],
+    "shade": [14, 494],
+    "maze": [268],
+    "fury": [269],
+    "renew": [271],
+    "cryptic": [249, 274]
+  },
+  "apostrophe": {
+    "tokens": 509,
+    "paragraphs": 11,
+    "sentences": 32,
+    "echo": [73, 153, 172, 225, 298, 340, 373, 409, 441],
+    "grace": [21, 22, 87, 124, 149, 181, 227, 376, 401, 479],
+    "shade": [13, 491],
+    "maze": [266],
+    "fury": [267],
+    "renew": [269],
+    "cryptic": [248, 272]
+  },
+  "midpoint_row_257_288": {
+    "token_count": 32,
+    "row_sha256": "e769716fd7226d6060a58ae467313fcd23508b32071fae390f9815ad40be9ff0",
+    "raw_tokens_redacted": true,
+    "bip39_words_distinct": ["echo", "more", "vivid", "night", "like", "maze", "fury", "renew", "hint", "what", "they", "upon"]
+  },
+  "dream_word_indices": {
+    "maze": 1100,
+    "fury": 755,
+    "renew": 1457
+  },
+  "wordlist_sha256": "2f5eed53a4727b4bf8880d8f3f199efc90e58503646d9ff8eff3a2ed3b24dbda"
+}

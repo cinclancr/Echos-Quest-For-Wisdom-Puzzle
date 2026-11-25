@@ -7,7 +7,9 @@ Verifies (from ``private/story_original.txt`` when present):
 * the positional facts that the extraction hypotheses are built on,
 * the BIP39 wordlist pins.
 
-Writes ``results/baseline_summary.json``.  Read-only; deterministic.
+Writes ``results/baseline_summary.json`` (the 32-token midpoint row is
+stored as a SHA-256, not verbatim — see the story-copyright notice).
+Read-only; deterministic.
 """
 
 from __future__ import annotations
@@ -52,11 +54,18 @@ def main() -> int:
             "renew": tt.indices_of("renew"),
             "cryptic": tt.indices_of("cryptic"),
         }
-    # midpoint row facts (dcode convention)
+    # midpoint row facts (dcode convention).  Story-copyright hygiene:
+    # the 32 raw tokens are a contiguous verbatim story window, so the
+    # published fixture stores only its length, its SHA-256 (verifiable by
+    # anyone holding the hash-pinned story) and the FILTERED BIP39 candidate
+    # list (already public research data) — never the raw row itself.
     tt = tokenize(src.text, "dcode")
     mid = [t for t in tt.tokens if 257 <= t.index <= 288]
+    row_sha = hashlib.sha256(" ".join(t.text for t in mid).encode("utf-8")).hexdigest()
     out["midpoint_row_257_288"] = {
-        "tokens": [t.text for t in mid],
+        "token_count": len(mid),
+        "row_sha256": row_sha,
+        "raw_tokens_redacted": True,
         "bip39_words_distinct": None,  # filled below
     }
     wl = load_wordlist()
