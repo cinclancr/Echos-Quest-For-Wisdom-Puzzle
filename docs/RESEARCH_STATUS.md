@@ -51,8 +51,8 @@ checksum gate:
 
 | Experiment | Coverage | Result |
 |---|---|---|
-| Natural-order battery (21 candidate sets × ~4-6 story orders × 12 passphrases × 2 KDFs × 15 paths × 2 encodings) | 61,200 comparisons | **0 matches** |
-| Brainwallet-style (SHA256 of the phrase as private key, 4 string forms × both encodings × 21 sets) | 168 comparisons | **0 matches** |
+| Natural-order battery (22 candidate sets × ~4-6 story orders × 12 passphrases × 2 KDFs × 15 paths × 2 encodings) | 64,080 comparisons | **0 matches** |
+| Brainwallet-style (SHA256 of the phrase as private key, 4 string forms × both encodings × 22 sets) | 176 comparisons | **0 matches** |
 | Electrum-standard-tag permutation scan, midpoint-32 set (all 11! arrangements; Electrum-version filter, m/0/0) | 39,916,800 perms, ~155K derived | **0 matches** |
 | Electrum-standard-tag permutation scan, p5-no-next set | 39,916,800 perms | **0 matches** |
 | Electrum-standard-tag permutation scan, p5-no-hint set | 39,916,800 perms | **0 matches** |

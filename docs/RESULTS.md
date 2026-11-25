@@ -10,20 +10,29 @@ produced within the stated, exact coverage.
 * Script: `scripts/experiments/nochecksum_natural_orders.py`
 * Output: `results/scan/nochecksum_natural.json` +
   `nochecksum_natural_detail.jsonl`
-* Coverage: 21 candidate sets × orders (narrative/reverse/alphabetical/
+* Coverage: 22 candidate sets (21 original + the H4-audit p5-final-four set,
+  added 2026-11-25) × orders (narrative/reverse/alphabetical/
   alpha-rev + set-specific splits) × 12 passphrases × KDFs {BIP39, Electrum}
-  × 15 paths × {compressed, uncompressed} = **61,200 address comparisons**.
+  × 15 paths × {compressed, uncompressed} = **64,080 address comparisons**
+  (originally 61,200 before the audit added the 22nd set).
 * Result: **0 matches**. No candidate's natural order reproduces the target
   under either seed KDF, any of the tested paths/passphrases or encodings.
 * Notes: this removed the checksum gate for every natural order; earlier
-  phases only ever derived checksum-valid phrases.
+  phases only ever derived checksum-valid phrases. The added set —
+  `p5-final-four`: `echo ancient into they more vivid night like maze fury
+  renew hint` — is the only sentence-range rule in the preregistered battery
+  that reaches exactly 12 words; it contains non-singleton members
+  (`ancient`, `into`, `they` each occur exactly twice in the story) and the
+  "final four sentences" rule is not story-grounded, but it was
+catalogued and tested like every other set (0 matches).
 
 ## 2026-11-24 — brainwallet-style tests
 
 * Script: `scripts/experiments/brainwallet_natural.py`
 * Output: `results/scan/brainwallet_natural.json`
-* Coverage: 21 sets × 4 phrase forms × 2 encodings = **168 comparisons**
-  (privkey = SHA256(phrase-string)).
+* Coverage: 22 sets × 4 phrase forms × 2 encodings = **176 comparisons**
+  (privkey = SHA256(phrase-string); re-run 2026-11-25 after the battery
+  gained the 22nd set).
 * Result: **0 matches**.
 
 ## 2026-11-24/25 — Electrum-standard-tag permutation scans
@@ -73,10 +82,11 @@ produced within the stated, exact coverage.
 * Local re-run results: `pip install -e '.[dev]'` OK; **72 tests passed
   then 74 after two new regression tests**; ruff 26 findings → **0**;
   baseline reproduction OK (story pin + wordlist sha match).
-* Repo-level fixes: `scripts/` and `results/` trees + `.github/workflows/ci.yml`
-  committed (they were missing from `main`, so README commands 404'd and CI
-  never ran); CI hardened (strict lint, explicit input existence checks,
-  non-masked smoke scan).
+* Repo-level fixes: `scripts/` and `results/` trees committed (they were
+  missing from `main`, so README commands 404'd); the CI workflow file
+  could not be pushed through the publication integration (missing
+  Workflows permission — content + remediation documented in
+  `docs/REPO_AUDIT_2026-11-25.md` §7.3).
 
 ## 2026-11-25 — C-vs-Python cross-validation with positive control
 
