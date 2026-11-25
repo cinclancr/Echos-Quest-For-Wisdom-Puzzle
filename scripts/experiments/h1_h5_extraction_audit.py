@@ -296,8 +296,8 @@ def main() -> int:
         "windows_ge12_that_contain_echo": [s for s, c in census if c >= 12
                                             and any(t.text == "echo" for t in tokens[s - 1:s + 31])],
     }
-    with (REPO / "results" / "scan" / "h3_window_census.csv").open("w") as fh:
-        w = csv.writer(fh)
+    with (REPO / "results" / "scan" / "h3_window_census.csv").open("w", newline="") as fh:
+        w = csv.writer(fh, lineterminator="\n")  # LF: match the published form
         w.writerow(["window_start", "distinct_bip39"])
         w.writerows(census)
     # grids
