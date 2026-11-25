@@ -35,6 +35,7 @@ Exit status is always 0 unless the story is missing/tampered.
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import random
 import sys
@@ -120,10 +121,13 @@ def main() -> int:
                    if all(w in s.text.lower().split() or w in s.text.lower() for w in DREAM_TRIO)]
     for s in dream_sents:
         toks = [t for t in tokens if t.sentence == s.index]
+        # story-copyright hygiene: never embed verbatim sentence text in a
+        # published artifact — identify the sentence by position + sha256.
+        s_sha = hashlib.sha256(s.text.lower().encode("utf-8")).hexdigest()
         h1_rules.append(rule_report(
-            f"sentence-of-trio (sentence {s})", "sentence",
+            f"sentence-of-trio (sentence {s.index}/p{s.paragraph})", "sentence",
             bip39_window(toks, wl), [t.index for t in toks],
-            f"sentence text: {s.text!r}"))
+            f"sentence {s.index} of the pinned story (sha256 {s_sha[:16]}...)"))
     # R1b: every sentence containing any dream word
     any_dream_sents = sorted({s.index for s in tt.sentences
                               if any(w in s.text.lower() for w in DREAM_TRIO)})
@@ -420,7 +424,13 @@ def main() -> int:
             if t.text == w:
                 sid = t.sentence
                 s = next(s for s in tt.sentences if s.index == sid)
-                ctx.append({"token": t.index, "sentence": sid, "sentence_text": s.text})
+                # redacted: position + sha256 only (no verbatim story text)
+                ctx.append({
+                    "token": t.index,
+                    "sentence": sid,
+                    "sentence_sha256": hashlib.sha256(
+                        s.text.lower().encode("utf-8")).hexdigest(),
+                })
         h4[f"context_{w}"] = {
             "occurrences": ctx,
             "global_count": global_counts[w],
