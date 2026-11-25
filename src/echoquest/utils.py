@@ -15,7 +15,7 @@ from __future__ import annotations
 
 import hashlib
 import hmac
-from functools import lru_cache
+from functools import cache
 
 from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.primitives.serialization import Encoding, PublicFormat
@@ -166,7 +166,7 @@ def p2wpkh_address(private_key: int) -> str:
     return "bc1q" + "".join(BECH32_CHARSET[d] for d in data + checksum)
 
 
-@lru_cache(maxsize=None)
+@cache
 def word_digest_cached(text: str) -> str:
     """SHA-256 hex digest of an exact string (used for redacted proofs)."""
     return sha256(text.encode("utf-8")).hexdigest()

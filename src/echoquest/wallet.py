@@ -16,7 +16,14 @@ import re
 import struct
 from dataclasses import dataclass
 
-from .utils import SECP256K1_N, hmac_sha512, p2pkh_address, p2sh_p2wpkh_address, p2wpkh_address, public_key_bytes
+from .utils import (
+    SECP256K1_N,
+    hmac_sha512,
+    p2pkh_address,
+    p2sh_p2wpkh_address,
+    p2wpkh_address,
+    public_key_bytes,
+)
 
 _PATH_STEP = re.compile(r"^(\d+)(['hH])?$")
 
@@ -85,7 +92,7 @@ def parse_path(path: str) -> list[int]:
     path = path.strip()
     if path in ("m", "", "M"):
         return []
-    if not path[0] in "mM" or path[1] != "/":
+    if path[0] not in "mM" or path[1] != "/":
         raise DerivationError(f"invalid path: {path!r}")
     out: list[int] = []
     for step in path[2:].split("/"):
