@@ -33,11 +33,7 @@ from pathlib import Path
 
 from .utils import (
     SECP256K1_N,
-    hmac_sha512,
     p2pkh_address,
-    public_key_bytes,
-    ripemd160,
-    sha256,
     sha256d,
 )
 
@@ -116,7 +112,7 @@ def mn_decode(words: list[str], wordlist: list[str] | None = None) -> str:
         except ValueError as exc:
             raise ValueError(f"word not in legacy wordlist: {exc}") from exc
         x = i1 + n * ((i2 - i1) % n) + n * n * ((i3 - i2) % n)
-        out += "%08x" % x
+        out += f"{x:08x}"
     return out
 
 
@@ -159,7 +155,7 @@ def old_master_public_key(hex_seed: str) -> str:
 
 
 def old_sequence(mpk_hex: str, for_change: int, n: int) -> int:
-    return int.from_bytes(sha256d(("%d:%d:" % (n, for_change)).encode("ascii") + bytes.fromhex(mpk_hex)), "big")
+    return int.from_bytes(sha256d(f"{n}:{for_change}:".encode("ascii") + bytes.fromhex(mpk_hex)), "big")
 
 
 def old_private_key(hex_seed: str, for_change: int, n: int) -> int:
