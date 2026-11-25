@@ -20,7 +20,7 @@ import sys
 from pathlib import Path
 
 from . import STORY_SHA256, TARGET_ADDRESS, __version__
-from .bip39 import mnemonic_valid, seed_from_mnemonic
+from .bip39 import mnemonic_valid
 from .extractors import list_methods, run
 from .positions import write_positions_csv
 from .reporting import write_extraction_csv, write_json
