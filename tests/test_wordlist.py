@@ -45,6 +45,39 @@ def test_official_vector_words_present() -> None:
         assert w in wl
 
 
+def test_shade_is_not_a_bip39_word_shadow_is() -> None:
+    """Regression for the docs/HYPOTHESES.md shade error (audit 2026-11-25).
+
+    The official English BIP39 list contains ``shadow`` (index 1574, 0-based)
+    but does NOT contain ``shade``.  Any hypothesis claiming the literal
+    story token ``shade`` is a BIP39 word is factually wrong; the only
+    BIP39-compatible reading is the prefix completion shade->shadow, which
+    must be flagged as an explicit, unmotivated-by-text transformation.
+    """
+    wl = load_wordlist(WL_PATH)
+    im = index_map(wl)
+    assert "shade" not in wl
+    assert "shade" not in im
+    assert "shadow" in wl
+    assert im["shadow"] == 1574
+
+
+def test_midpoint_and_p5_words_membership_is_exact() -> None:
+    """Exact membership (not prefix expansion) for every catalogued word.
+
+    Members of the story-derived candidate sets that are NOT BIP39 words:
+    after (midpoint row), nothing/next are BIP39 (checked), etc.  This locks
+    the exact-membership rule used by all extractors.
+    """
+    wl = set(load_wordlist(WL_PATH))
+    midpoint_row_words = {
+        "echo", "more", "vivid", "night", "like", "maze", "fury", "renew",
+        "hint", "what", "they", "upon", "after",
+    }
+    non_members = {w for w in midpoint_row_words if w not in wl}
+    assert non_members == {"after"}, sorted(non_members)
+
+
 def test_verify_flag_rejects_tampered_file(tmp_path) -> None:
     bad = tmp_path / "bad.txt"
     lines = WL_PATH.read_text("utf-8").splitlines()

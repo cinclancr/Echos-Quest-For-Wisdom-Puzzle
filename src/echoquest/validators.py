@@ -10,9 +10,9 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
-from .bip39 import mnemonic_valid, seed_from_mnemonic, word_indices
+from .bip39 import mnemonic_valid, seed_from_mnemonic
+from .electrum import electrum_seed_type, electrum_standard_addresses
 from .wallet import address_for
-from .electrum import electrum_standard_addresses, electrum_segwit_addresses, electrum_seed_type
 
 TARGET_ADDRESS = "1GABd5r3dYTYqSoRcErghjZTbV6zJXZJBx"
 
