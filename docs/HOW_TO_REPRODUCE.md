@@ -34,7 +34,36 @@ python -m echoquest extract --input private/story_original.txt --method all --ou
 ## 3. Test suite (no network, no secrets)
 
 ```bash
-pytest -q                     # 72 tests: vectors, tokenizers, CLI, regressions
+pytest -q                     # 74 tests: vectors, tokenizers, CLI, regressions
+ruff check .                  # 0 findings (strict; also enforced in CI)
+```
+
+## 3b. C-vs-Python cross-validation (with positive control)
+
+```bash
+# the C scanner's `derive` mode prints per-phrase, per-path hash160 (both
+# encodings) for a file of 12-word phrases; the driver generates 1000
+# deterministic vectors (half checksum-valid, half invalid), compares
+# 18,000 values against the Python stack, and proves the scanner's match
+# path with a synthetic positive control + a negative control:
+python scripts/experiments/cross_validate.py --vectors 1000
+# writes results/scan/cross_validation.json
+```
+
+## 3c. H1–H5 extraction-rule audit (story-side, deterministic)
+
+```bash
+# requires private/story_original.txt; 22 preregistered dream-anchored
+# rules, metatext batteries, the full 32-token window census, ¶5 mechanism
+# variants, and 2000-iteration frequency/structure-preserving null models:
+python scripts/experiments/h1_h5_extraction_audit.py
+# writes results/scan/h1_h5_audit.json + h3_window_census.csv
+```
+
+## 3d. Consolidated coverage summary
+
+```bash
+python scripts/summarize_results.py   # writes results/summary.json
 ```
 
 ## 4. Candidate verification (read-only, no checksum gate)
