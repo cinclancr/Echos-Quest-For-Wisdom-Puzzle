@@ -13,8 +13,9 @@ twelve words form a checksum-valid BIP39 mnemonic.
 
 **Independent audit (2026-11-25):** the repository was audited end-to-end
 and made reproducible from a clean clone (the `scripts/` and `results/`
-trees and CI workflow are committed; see
-[docs/REPO_AUDIT_2026-11-25.md](docs/REPO_AUDIT_2026-11-25.md)). The C
+trees are committed; the CI workflow file itself is held back only by an
+integration permission — see
+[docs/REPO_AUDIT_2026-11-25.md](docs/REPO_AUDIT_2026-11-25.md) §7.3). The C
 scanner is differentially cross-validated against the Python stack on
 **18,000 hash160 values** with a synthetic positive control proving the
 match path, and the extraction-rule space H1–H5 was audited with
@@ -76,8 +77,8 @@ run (see `selftest`).
 │   ├── cli.py                # `echoquest` / `python -m echoquest` CLI
 │   ├── sources.py            # byte-exact provenance verification
 │   ├── tokenizers.py         # pluggable tokenisation rules
-│   ├── positions.py         # 1-based positional tables, 16x32 grids
-│   ├── wordlists.py         # pinned BIP39 wordlist (hash-checked)
+│   ├── positions.py          # 1-based positional tables, 16x32 grids
+│   ├── wordlists.py          # pinned BIP39 wordlist (hash-checked)
 │   ├── bip39.py              # checksum, entropy, seed (PBKDF2)
 │   ├── wallet.py             # read-only BIP32/BIP44 derivation, addresses
 │   ├── electrum.py           # Electrum new/old seed algorithms
@@ -176,17 +177,18 @@ plus derivation parameters — never as raw key material.
   contains twelve distinct BIP39 words including `echo` and all three
   explicit dream words (`maze`, `fury`, `renew`).
 * **Audit caveat:** 50 of the 481 possible 32-token windows carry ≥ 12
-distinct BIP39 words (this row ranks 48th), and the anchor-alignment null
-gives p = 0.1305 — the row's *statistical* specialness is falsified; only
-its content (the dream trio) keeps it top-ranked. Full rationale:
-`docs/EXTRACTION_PRIORITY.md`.
+  distinct BIP39 words (this row ranks 48th), and the anchor-alignment null
+  gives p = 0.1305 — the row's *statistical* specialness is falsified; only
+  its content (the dream trio) keeps it top-ranked. Full rationale:
+  `docs/EXTRACTION_PRIORITY.md`.
 * Earlier checksum-gated scanning covered 1,391,882 of the 2,492,947
   checksum-valid permutations of the midpoint set at `m/44'/0'/0'/0/0`
   (no match).
 * **This phase removed the checksum gate**: natural orders of every
-  catalogued 12-word candidate set were tested across 12 passphrases × 2
-  KDFs (BIP39/Electrum) × 15 paths × both encodings — 61,200 comparisons,
-  no match. Brainwallet-style constructions of the same orders — 168
+  catalogued 12-word candidate set (22 after the audit added the H4
+  final-four-sentences set) were tested across 12 passphrases × 2
+  KDFs (BIP39/Electrum) × 15 paths × both encodings — 64,080 comparisons,
+  no match. Brainwallet-style constructions of the same orders — 176
   comparisons, no match.
 * A full no-checksum permutation scan of the midpoint-32 set and
   Electrum-tag-filtered scans of the top three candidate sets are the
