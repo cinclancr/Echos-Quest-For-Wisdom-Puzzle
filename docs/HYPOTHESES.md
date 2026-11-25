@@ -11,10 +11,12 @@ UNTESTED / REJECTED / INCOMPLETE.  Machine-readable registry:
   ≥4 letters (the letter filter is NOT story-grounded).
 * Set (11 + echo): `upon there wise often wide young remember journey find
   real ancient`.
-* Status: REJECTED as a solved phrase — natural orders fail checksum;
-  structured permutations address-tested with no match.  The "22 crossing
-  pairs" geometry is not statistically rare under randomisation controls
-  (prior work, audited).
+* Status: REJECTED as a natural-order phrase at path m/44'/0'/0'/0/0 with
+  empty passphrase (no checksum, no address match) and as a tested set of
+  structured permutations at that path; the "22 crossing pairs" geometry is
+  not statistically rare under randomisation controls (prior work, audited).
+  The word-set hypothesis itself remains open only via new extraction
+  evidence — no such evidence exists today.
 
 ## B. Twice-and-four-letters
 
@@ -31,13 +33,20 @@ UNTESTED / REJECTED / INCOMPLETE.  Machine-readable registry:
 
 ## D. Midpoint row 257–288 (`midpoint-32`) — currently top-ranked
 
-* Rule: the 32-token row beginning at the second `Echo's` (the exact 512/2
+* Rule: the 32-token row beginning at the second `Echo's` (the exact 512/2+1
   midpoint) contains 12 distinct BIP39 words; `like` deduplicated.
 * Set: `echo more vivid night like maze fury renew hint what they upon`.
 * All Electrum-standard permutations rejected (m/0/0) — see RESULTS.md.
-* Full no-checksum BIP39 permutation scan: in progress.
-* Status: HYPOTHESIS (strongest story evidence: all three dream words and
-  the second `Echo's` anchor live in this row).
+* Full no-checksum BIP39 permutation scan: in progress (block 0 at 28.3%,
+  446,464 derivations, 0 matches so far; checkpointed and resumable).
+* **Audit (2026-11-25): the row's BIP39 density is NOT statistically
+  special** — 50 of 481 32-token windows carry ≥ 12 distinct BIP39 words
+  (max 14, this row ranks 48th), ±1-token shifts give 11, and the joint
+  anchor-alignment null gives p = 0.1305. The set stays top-ranked for its
+  content (all three dream words at the narrative midpoint), and the
+  running wallet scan — not statistics — will decide it.
+* Status: HYPOTHESIS (statistical aura falsified; content coincidence
+  remains).
 
 ## E. Paragraph-5 singleton BIP39 words (`p5-singletons`)
 
@@ -45,15 +54,28 @@ UNTESTED / REJECTED / INCOMPLETE.  Machine-readable registry:
   hint` (+ echo = 13; drop `next` as instruction or `hint` → 12 words).
 * Historical index errors (armed/strong) were corrected and re-audited.
 * Electrum-standard permutations (both drop variants): REJECTED at m/0/0.
-* Status: HYPOTHESIS; the "drop one word" rule is the weak point.
+* Audit (2026-11-25): the singleton set is EXACTLY 12 words (verified), so
+  +echo = 13 forces exactly one drop with no story-grounded selector
+  (next lives only in "The next morning…"; hint only in "Each a cryptic
+  hint…"); first-4/final-4 sentence variants introduce non-singletons.
+* Status: HYPOTHESIS but weakened — the drop-one rule is unmotivated and
+  both variants are rejected in natural orders and at Electrum m/0/0.
 
 ## F. Echo/Grace parity set
 
-* Set: `upon shade there wise often wide day remember find cry turned` with
-  prefix completions `shade→shadow`, `turned→turn` (literal `shade` IS a
-  BIP39 word — both variants tested).
-* Status: REJECTED for natural orders (no checksum, no address match);
-  arbitrary permutations were partially tested in prior phases.
+* Set: `upon shade there wise often wide day remember find cry turned`.
+  Membership audit (2026-11-25): the literal token `shade` is **NOT** a
+  BIP39 word (the official list has `shadow`, index 1574, but not
+  `shade`); `turned` and `cry` are not BIP39 words either.  The prefix
+  completions `shade→shadow` and `turned→turn` are explicit, text-unmotivated
+  transformations and are flagged as such.  Earlier drafts of this ledger
+  wrongly asserted "literal `shade` IS a BIP39 word" — corrected and locked
+  by `tests/test_wordlist.py::test_shade_is_not_a_bip39_word_shadow_is`.
+* Status: REJECTED as a natural-order phrase at the primary path
+  (no checksum, no address match, both with and without the prefix
+  completions); arbitrary permutations were partially tested in prior
+  phases.  As a word-set hypothesis this is among the weakest: at least two
+  of its eleven words require non-literal transformations.
 
 ## G. Alternate-position set
 
@@ -84,3 +106,21 @@ UNTESTED / REJECTED / INCOMPLETE.  Machine-readable registry:
   carry ~155K valid version tags; each derived at `m/0/0` — REJECTED for
   those sets at that address index.  Non-zero address indices remain
   UNTESTED (available via the `electrum` mode of the C scanner).
+
+## K. Wallet-side hypotheses (independent of word selection)
+
+* BIP39 KDF with broken checksum at the primary path: the running full scan.
+* Passphrases: 12 story-derived passphrases tested for natural orders
+  (61,200 comparisons, 0 matches).  Arbitrary passphrases on arbitrary
+  permutations: UNTESTED (combinatorial; requires dedicated search).
+* Brainwallet (SHA256 of phrase as key): REJECTED for natural orders.
+* Address index > 0 / alternate paths for permutations: partially tested
+  (natural orders cover 15 paths; permutations only at the primary path).
+
+## What would falsify the whole BIP39 model
+
+If the full no-checksum scans of the top sets complete with zero matches at
+the primary path (and reasonable extensions), the remaining explanations are
+(a) a different word set (extraction rule still unknown), (b) a passphrase,
+(c) a non-standard derivation, or (d) a non-BIP39 word source. Each has its
+own bounded search documented in HOW_TO_REPRODUCE.md.

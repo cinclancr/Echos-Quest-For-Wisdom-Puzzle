@@ -25,7 +25,7 @@ research phases, all now corrected and locked by regression tests.
 ## 3. Python-implementation memory bugs during C development — FIXED
 
 While porting the scan to C, three bugs were found and fixed by differential
-listing against OpenSSL/Python (this is why the selftest exists):
+testing against OpenSSL/Python (this is why the selftest exists):
 
 * fe_mul REDC: an 8-limb accumulator dropped the rare q ≥ 2^256 overflow
   (~19% of random inputs failed) — fixed with a 9-limb accumulator and a
@@ -50,3 +50,32 @@ listing against OpenSSL/Python (this is why the selftest exists):
   mnemonic" in intermediate notes was coincidence (checksum-valid
   rearrangements occur at 1/16 by chance and are not evidence).  The
   puzzle remains UNSOLVED; see SOLUTION.md.
+
+## 6. HYPOTHESES.md claimed "literal `shade` IS a BIP39 word" — FIXED (2026-11-25)
+
+* The official English BIP39 wordlist contains `shadow` (index 1574,
+  0-based) and does **not** contain `shade`.  The prior text of
+  docs/HYPOTHESES.md (hypothesis F) asserted the opposite.
+* Fixed by: rewriting hypothesis F to separate the literal story token
+  (not a BIP39 word) from the prefix completion `shade→shadow`
+  (explicit transformation), and locking membership in
+  `tests/test_wordlist.py::test_shade_is_not_a_bip39_word_shadow_is`
+  plus an exact-membership test for every midpoint-row word
+  (`after` is the only non-member).
+
+## 7. Repository was not reproducible from a clean clone — FIXED (2026-11-25)
+
+* The README and CI referenced `scripts/experiments/nochecksum_scan.c`,
+  `scripts/reproduce_baseline.py`, `results/scan/*` — but `scripts/` and
+  `results/` were not pushed to the remote default branch (raw URLs
+  returned 404), and `.github/workflows/ci.yml` itself was missing, so
+  nothing executed.  Fixed by committing the full `scripts/` tree, the
+  small non-secret `results/scan/` fixtures (state files, word sets,
+  goldens) and the workflow; the 59 MB `results/scan/dset.valid` stays
+  git-ignored (`.gitignore`), as do all `private/` story copies.
+* CI hardening: lint is now strict (26 ruff findings fixed, including
+  13 unused imports and 2 percent-format modernisations), the smoke
+  scan no longer masks non-zero exits, and each documented workflow
+  command executes at least one minimal step in CI, failing loudly when
+  a referenced file is missing.
+
