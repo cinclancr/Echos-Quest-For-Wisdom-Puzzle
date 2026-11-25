@@ -9,8 +9,8 @@ explicit and flagged).
 
 from __future__ import annotations
 
+from collections.abc import Callable, Iterable
 from dataclasses import dataclass, field
-from typing import Callable, Iterable
 
 from ..tokenizers import Token, TokenizedText
 from ..wordlists import load_wordlist

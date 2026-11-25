@@ -77,7 +77,6 @@ def marker_parity(tokens: TokenizedText, wordlist: list[str]) -> ExtractionResul
     hypothesis (shade->shadow, turned->turn) are flagged, not silently
     substituted.
     """
-    counts = tokens.counts()
     wl = set(wordlist)
     n = len(tokens.tokens)
     if n != 512:
