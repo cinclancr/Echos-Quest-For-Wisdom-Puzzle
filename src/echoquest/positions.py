@@ -7,11 +7,11 @@ text so that every earlier manual observation can be checked mechanically.
 from __future__ import annotations
 
 import csv
+from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable
 
-from .tokenizers import Token, TokenizedText, grid
+from .tokenizers import Token, TokenizedText
 
 
 @dataclass(frozen=True)

@@ -20,8 +20,8 @@ character offsets so positional claims can be re-derived mechanically.
 from __future__ import annotations
 
 import re
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
-from typing import Iterable, Sequence
 
 DCODE_RE = re.compile(r"[A-Za-z0-9]+")
 APOS_RE = re.compile(r"[A-Za-z0-9]+(?:'[A-Za-z0-9]+)*")
