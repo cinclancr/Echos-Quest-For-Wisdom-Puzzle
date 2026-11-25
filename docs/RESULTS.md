@@ -67,6 +67,59 @@ produced within the stated, exact coverage.
   address-tested) — audited, not re-run in full here; see
   [PRIOR_EXPERIMENTS.md](PRIOR_EXPERIMENTS.md).
 
+## 2026-11-25 — independent repository audit (Stage 0/1)
+
+* Script/docs: `docs/REPO_AUDIT_2026-11-25.md`, `docs/KNOWN_ERRORS.md` §6–7.
+* Local re-run results: `pip install -e '.[dev]'` OK; **72 tests passed
+  then 74 after two new regression tests**; ruff 26 findings → **0**;
+  baseline reproduction OK (story pin + wordlist sha match).
+* Repo-level fixes: `scripts/` and `results/` trees + `.github/workflows/ci.yml`
+  committed (they were missing from `main`, so README commands 404'd and CI
+  never ran); CI hardened (strict lint, explicit input existence checks,
+  non-masked smoke scan).
+
+## 2026-11-25 — C-vs-Python cross-validation with positive control
+
+* Script: `scripts/experiments/cross_validate.py` (+ new `derive` mode in
+  `scripts/experiments/nochecksum_scan.c`).
+* Coverage: 1000 deterministic vectors — 499 checksum-valid, 499
+  checksum-invalid (shuffled), the Trezor vector, and 2 story natural
+  orders — × 9 derivation paths × {compressed, uncompressed} hash160 =
+  **18,000 values compared**.
+* Result: **0 mismatches**; 0 hard derivation failures.
+* Positive control: scanner copy with synthetic TARGET_H160 = the Trezor
+  vector's own `m/44'/0'/0'/0/0` compressed hash160, run in `full` mode over
+  the vector's own word file → **match fired and recorded exactly**
+  (word indices [0×11, 3], path `m/44'/0'/0'/0/0`, compressed, BIP39 KDF).
+  Negative control (disjoint words): no match file. Output:
+  `results/scan/cross_validation.json`.
+
+## 2026-11-25 — H1–H5 extraction-rule audit (story-side, deterministic)
+
+* Script: `scripts/experiments/h1_h5_extraction_audit.py` (seed 20261125,
+  2000-iteration null models). Output: `results/scan/h1_h5_audit.json`,
+  `results/scan/h3_window_census.csv`.
+* H1 (dream-anchored rules): 22 preregistered rules; 8 recover the held-out
+  trio `maze`/`fury`/`renew`; **0 produce a complete 12-word set**.
+* H2 (metatext instructions): all families rejected — no trio, wrong counts.
+* H3 (grid/window): 50 of 481 32-token windows carry ≥ 12 distinct BIP39
+  words; midpoint row ranks **48th**; 4 such windows even start at `echo`
+  (tokens 1, 154, 173, 257); ±1-token sensitivity → 11 words; apostrophe
+  tokenizer (509 tokens) → 8–9-word windows; frequency-preserving shuffle
+  null p(any ≥ 12 window) = 1.0; joint anchor-alignment null p = 0.1305.
+* H4 (¶5 mechanism): exactly 12 global-singleton BIP39 words in ¶5; +echo =
+  13 → the drop-one choice (next vs hint) remains unmotivated.
+* H5 (frequency): 15 once-in-each-half BIP39 words (the historical 11-word
+  "set A" is exactly its ≥4-letter subset); null-A p = 0.409, null-B p = 1.0.
+
+## 2026-11-25 — full no-checksum scan progress
+
+* Checkpoint `results/scan/ncs.state.b0`: block 0 at offset **1,028,240 /
+  3,628,800** (28.3% of block 0; cumulative permutations passed — the
+  per-session `processed`/`derived` counters reset on resume, the `offset`
+  is the authoritative progress), latest session 446,464 derivations,
+  checksum-valid 27,863, **0 matches**, ~822 permutations/s, resumable.
+
 ## Validation of the tooling itself
 
 * `selftest` mode: BIP39 official vector (Trezor vectors.json[0]), RIPEMD160
@@ -74,5 +127,8 @@ produced within the stated, exact coverage.
   Python stack which itself matches the Trezor vectors and master xprv),
   and a 130-scalar differential test of the hand-written Montgomery
   secp256k1 against OpenSSL — all pass on every invocation.
-* Python test suite: 72 tests green (tokenisation, positions, extraction
-  registry, wordlist pins, BIP39/BIP32 vectors, address encodings, CLI).
+* C-vs-Python differential (see above): 18,000 hash160 values, 0 mismatches,
+  with a synthetic-positive match control proving the match path.
+* Python test suite: **74 tests green** (tokenisation, positions, extraction
+  registry, wordlist pins incl. the shade/shadow membership regression,
+  BIP39/BIP32 vectors, address encodings, CLI).
