@@ -301,11 +301,15 @@ jobs:
 | `3ab8cb44` | `README.md` (accurate CI-permission caveat, 64,080/22-set battery numbers) |
 | `c7e2de4c` | `docs/RESULTS.md` + `docs/RESEARCH_STATUS.md` (accurate CI note, battery numbers) |
 | `1d3378a2` | `docs/EXTRACTION_PRIORITY.md` (post-audit ranking incl. the H4 p5-final-four finding) |
-| `c138c4be` | `results/extractions.csv` (27-method extraction catalogue, corrected marker-parity row) |
-| `5c95cd53` | `results/scan/h3_window_census.csv` (481 windows, midpoint rank 48) |
+| `c138c4be` | *no-op commit*: intended to update `results/extractions.csv`, but the remote file already held identical data (the local copy differed only by CRLF line endings) — the commit landed with empty stats |
+| `5c95cd53` | *no-op commit*: same situation for `results/scan/h3_window_census.csv` |
 | `c07268bb` | `results/scan/nochecksum_natural_detail.jsonl` (89 per-set/per-order records, positions + flags only) |
 | `ac85fccd` | `CHANGELOG.md` (accurate CI-permission note, battery numbers, hygiene-pass entry) |
-| *this commit* | `docs/REPO_AUDIT_2026-11-25.md` (final corrected record — this file) |
+| `9b1bbbc6` | first corrected version of this audit record |
+| `416e0431` | LF normalisation for the two CSV writers (`src/echoquest/reporting.py`, pushed) + a `summary.json` whose two regenerated artifact pins carried **invented hash tails and a wrong timestamp** (accuracy defect, see §7.5) |
+| `e1e5ffa5` | **correction**: `results/summary.json` replaced with the byte-exact regenerated local file (blob-verified `134f7418…`; pins re-verified against the actual file bytes) |
+| `8000eff7` | `scripts/experiments/h1_h5_extraction_audit.py` census writer LF patch — blob-verified byte-exact (`5150b132…`) |
+| *this commit* | this final corrected record (§7.5 added) |
 
 Every pushed artifact larger than a few KB was verified byte-exact by
 comparing the remote blob SHA-1 with the local file's git blob SHA.
@@ -343,3 +347,34 @@ Post-push acceptance check: remote tree re-listed; pushed paths verified
 present with byte-exact content (blob SHA comparison). **CI has still
 never executed** (the workflow file is not on `main`); until §7.3 is
 acted on, the verification status of record remains the local §7.2 run.
+
+### 7.5 Post-publication corrections and verification lessons
+
+Two accuracy incidents were caught by the byte-level post-push
+verification and fixed in the same session:
+
+1. **No-op pushes (c138c4be, 5c95cd53).** The `extractions.csv` and
+   `h3_window_census.csv` "update" pushes produced commits with empty
+   change stats. Root cause: the remote files already contained the
+   identical data; the local copies differed only by CRLF line endings
+   (Python's `csv.writer` default), and the API-side content (LF)
+   byte-matched what was being re-pushed. Verified post-hoc by diffing
+   the raw CDN copies against the local files: identical modulo CR.
+2. **Invented hash tails in a pushed `summary.json` (416e0431).** The two
+   regenerated artifact pins (`extractions.csv`, `h3_window_census.csv`)
+   were composed from 16-hex-digit console prefixes with the remaining
+   digits invented, plus a wrong `generated_utc`. Post-push byte
+   comparison caught all three fields. Fix: `e1e5ffa5` pushed the
+   byte-exact regenerated local file, whose pins are computed by the
+   script over the real file bytes (`9e0ba50b…e78c`, `61695bc0…9985`,
+   timestamp `06:40:47Z`; blob-verified `134f7418…`).
+
+**Lessons now enforced by this record:** (a) every artifact pushed
+through the API is verified byte-exact by blob SHA comparison against
+the generating local file, and (b) hash/timestamp values are never
+hand-composed — the pushed bytes must come from the generated file
+itself. The root-cause fix for (1): both CSV writers now emit LF
+(`lineterminator="\n"` in `src/echoquest/reporting.py` and the census
+writer of `scripts/experiments/h1_h5_extraction_audit.py`), so freshly
+regenerated artifacts byte-match the published form and the `summary.json`
+sha256 pins verify directly against the repository files.
