@@ -107,6 +107,19 @@ SETS: dict[str, dict] = {
         "narrative": ("echo upon wise wide help will find real into them like gold"),
         "positions": [1, 7, 18, 42, 87, 175, 179, 193, 230, 286, 391, 441],
     },
+    # H4 audit finding (2026-11-25): the FINAL FOUR sentences of paragraph 5
+    # (sentences 16-19) yield a formally complete 12-word set with echo and
+    # all three dream words.  The rule itself ("final four") is not
+    # story-grounded and the set contains non-singleton words (ancient,
+    # into, they each occur exactly twice in the story), but it is the only
+    # sentence-range rule in the preregistered battery that reaches exactly
+    # 12 words — so it is catalogued and battery-tested like the others.
+    "p5-final-four": {
+        "narrative": ("echo ancient into they more vivid night like maze fury renew hint"),
+        "positions": [1, 233, 238, 247, 257, 261, 262, 264, 267, 268, 269, 271, 275],
+        "note": "final-four-sentences of paragraph 5; complete 12-word candidate, "
+                "non-singleton members flagged; H4 audit 2026-11-25",
+    },
 }
 
 # Drop-one variants of the 13-word paragraph-5 singleton superset
