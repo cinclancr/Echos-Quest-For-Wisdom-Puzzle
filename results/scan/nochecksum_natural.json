@@ -1,7 +1,7 @@
 {
   "experiment": "nochecksum_natural_orders",
   "target": "1GABd5r3dYTYqSoRcErghjZTbV6zJXZJBx",
-  "sets": 21,
+  "sets": 22,
   "passphrases": [
     "",
     "echo",
@@ -33,9 +33,9 @@
     "m/0/4",
     "m/1/0"
   ],
-  "comparisons": 61200,
+  "comparisons": 64080,
   "matches": [],
-  "elapsed_s": 121.1,
-  "completed_utc": "2026-11-24T20:31:45Z",
+  "elapsed_s": 127.4,
+  "completed_utc": "2026-11-25T04:13:41Z",
   "note": "natural orders only, no checksum gate; full permutation scan is separate"
 }
