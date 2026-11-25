@@ -1,0 +1,11 @@
+worker block 0: offset=3628800 checksum_valid=227593 electrum_valid=14237 derived=3628800 matches=0
+worker block 1: offset=3628800 checksum_valid=226734 electrum_valid=14310 derived=3628800 matches=0
+worker block 2: offset=3628800 checksum_valid=226759 electrum_valid=14101 derived=3628800 matches=0
+worker block 3: offset=3628800 checksum_valid=226906 electrum_valid=13936 derived=3628800 matches=0
+worker block 4: offset=3628800 checksum_valid=226016 electrum_valid=13964 derived=3628800 matches=0
+worker block 5: offset=3628800 checksum_valid=226187 electrum_valid=14091 derived=3628800 matches=0
+worker block 6: offset=3628800 checksum_valid=227241 electrum_valid=14088 derived=3628800 matches=0
+worker block 7: offset=3628800 checksum_valid=226008 electrum_valid=14070 derived=3628800 matches=0
+worker block 8: offset=3628800 checksum_valid=226133 electrum_valid=14308 derived=3628800 matches=0
+worker block 9: offset=3628800 checksum_valid=226752 electrum_valid=14137 derived=3628800 matches=0
+worker block 10: offset=3628800 checksum_valid=227572 electrum_valid=14276 derived=3628800 matches=0

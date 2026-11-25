@@ -1,0 +1,41 @@
+{
+  "experiment": "nochecksum_natural_orders",
+  "target": "1GABd5r3dYTYqSoRcErghjZTbV6zJXZJBx",
+  "sets": 21,
+  "passphrases": [
+    "",
+    "echo",
+    "wisdom",
+    "shade",
+    "grace",
+    "falcon",
+    "castle",
+    "forest",
+    "book",
+    "maze",
+    "Echo's Quest For Wisdom",
+    "Echos Quest For Wisdom"
+  ],
+  "paths": [
+    "m/44'/0'/0'/0/0",
+    "m/0'/0/0",
+    "m/0/0",
+    "m/0'/0",
+    "m/0/0/0",
+    "m/0'/0'",
+    "m/0/0/0/0",
+    "m/0'/0/0/0",
+    "m",
+    "m/0/0",
+    "m/0/1",
+    "m/0/2",
+    "m/0/3",
+    "m/0/4",
+    "m/1/0"
+  ],
+  "comparisons": 61200,
+  "matches": [],
+  "elapsed_s": 121.1,
+  "completed_utc": "2026-11-24T20:31:45Z",
+  "note": "natural orders only, no checksum gate; full permutation scan is separate"
+}
