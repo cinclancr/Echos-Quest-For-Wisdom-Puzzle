@@ -1,5 +1,36 @@
 # Changelog
 
+## 1.1.0 (2026-11-25) — independent repository audit
+
+### Audit
+- Repository made reproducible from a clean clone: the `scripts/` and
+  `results/` trees and `.github/workflows/ci.yml` were missing from `main`
+  (README commands 404'd, CI never ran) — committed; CI hardened (strict
+  lint, input existence checks, non-masked smoke scan; documented in
+  `docs/REPO_AUDIT_2026-11-25.md`).
+- Factual fix: `shade` is NOT a BIP39 word (`shadow`, index 1574, is);
+  corrected in `docs/HYPOTHESES.md` (hypothesis F) and locked by new
+  regression tests (74 tests total; ruff: 26 findings → 0).
+- New `derive` mode in the C scanner + `scripts/experiments/cross_validate.py`:
+  1000 vectors (checksum-valid and -invalid) × 9 paths × 2 encodings =
+  18,000 hash160 values C-vs-Python, 0 mismatches; synthetic-positive
+  control fires correctly; negative control clean.
+- New `scripts/experiments/h1_h5_extraction_audit.py`: preregistered
+  dream-anchored rule battery (22 rules), metatext batteries, full
+  32-token window census, paragraph-5 mechanism variants, and
+  frequency/structure-preserving null models. Headline: the midpoint row is
+  NOT statistically special (rank 48 of 481; joint-alignment null p = 0.13);
+  the once-in-each-half richness is chance-level (p = 0.41).
+- New `scripts/summarize_results.py` → `results/summary.json` (non-secret
+  coverage counters, candidate-set IDs, artifact hashes).
+- New docs: `docs/REPO_AUDIT_2026-11-25.md`, `docs/EXTRACTION_PRIORITY.md`;
+  updated README, RESEARCH_STATUS, RESULTS, HYPOTHESES, SOLUTION,
+  KNOWN_ERRORS (§6–7), HOW_TO_REPRODUCE.
+
+### Research
+- Full no-checksum scan of the midpoint-32 set: block 0 at 1,028,240 /
+  3,628,800 (446,464 derivations), 0 matches, resumable.
+
 ## 1.0.0 (2026-11-25)
 
 ### Research
