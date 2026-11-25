@@ -78,6 +78,7 @@ def test_midpoint_and_p5_words_membership_is_exact() -> None:
     assert non_members == {"after"}, sorted(non_members)
 
 
+
 def test_verify_flag_rejects_tampered_file(tmp_path) -> None:
     bad = tmp_path / "bad.txt"
     lines = WL_PATH.read_text("utf-8").splitlines()

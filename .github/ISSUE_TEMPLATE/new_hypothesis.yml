@@ -11,7 +11,7 @@ body:
         pinned to "echo").
       placeholder: |
         Rule: take the first BIP39 word after each of the 11 Echo markers...
-    validations:
+  validations:
       required: true
   - type: textarea
     attributes:
